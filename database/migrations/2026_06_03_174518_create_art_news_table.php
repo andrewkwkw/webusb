@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('art_news', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->string('image_path')->nullable();
+            $table->enum('category', ['Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran']);
+            $table->date('event_date')->nullable();
+            $table->boolean('is_highlight')->default(false);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->boolean('is_published')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('art_news');
+    }
+};

@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    /* Custom Colors from Material 3 Design / Figma */
+    --color-primary: #002576;
+    --color-secondary: #735c00;
+    --color-tertiary: #2b2e2f;
+    --color-surface: #fcf8f9;
+    --color-surface-variant: #e5e2e3;
+    --color-surface-container-low: #f6f3f4;
+    --color-background: #fcf8f9;
+    --color-on-primary: #ffffff;
+    --color-on-primary-container: #96adff;
+    --color-on-surface-variant: #444653;
+    --color-on-background: #1b1b1c;
+    --color-primary-fixed: #dce1ff;
+    --color-gold: #D4AF37; /* usb-gold custom */
+
+    /* Custom Fonts */
+    --font-headline-md: 'Libre Caslon Text', serif;
+    --font-display-lg: 'Libre Caslon Text', serif;
+    --font-headline-lg: 'Libre Caslon Text', serif;
+    --font-headline-lg-mobile: 'Libre Caslon Text', serif;
+    --font-label-lg: 'Manrope', sans-serif;
+    --font-body-lg: 'Manrope', sans-serif;
+    --font-label-sm: 'Manrope', sans-serif;
+    --font-body-md: 'Manrope', sans-serif;
+
+    /* Custom Spacing */
+    --spacing-gutter: 24px;
+    --spacing-margin-desktop: 80px;
+    --spacing-margin-mobile: 20px;
+    --spacing-max-width: 1440px;
+}
+
+/* --- Custom Utilities --- */
+.glass-nav {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-gradient {
+    background: linear-gradient(to bottom, rgba(252, 248, 249, 0.2), rgba(252, 248, 249, 1));
+}
+
+.text-gold { color: var(--color-gold); }
+.bg-gold { background-color: var(--color-gold); }
+.border-gold { border-color: var(--color-gold); }
+.hover-gold:hover { color: var(--color-gold); }
+
+/* Micro-interactions */
+.btn-hover-effect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 37, 118, 0.15);
+}
