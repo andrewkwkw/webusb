@@ -15,6 +15,6 @@ jobs:
         run: |
           cd /home/andri/webusb
           git pull origin main
-          composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
-          php artisan migrate --force
-          php artisan optimize:clear
+          php8.3 /usr/bin/composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
+          php8.3 artisan migrate --force
+          php8.3 artisan optimize:clear
