@@ -15,12 +15,6 @@ jobs:
         run: |
           cd /home/andri/webusb
           git pull origin main
-          
-          # Pastikan menggunakan composer terbaru dengan memaksa IPv4 (agar tidak macet saat download)
-          if [ ! -f "composer.phar" ]; then
-            curl -4 -sS https://getcomposer.org/installer | php8.4
-          fi
-          
-          php8.4 composer.phar install --no-interaction --prefer-dist --optimize-autoloader
+          composer install --no-interaction --prefer-dist --optimize-autoloader
           php8.4 artisan migrate --force
           php8.4 artisan optimize:clear
