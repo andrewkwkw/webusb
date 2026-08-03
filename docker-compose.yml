@@ -43,6 +43,20 @@ services:
     ports:
       - "3306:3306"
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80" # Akses dari IP_SERVER:8080
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USERNAME:-webusb}
+      PMA_PASSWORD: ${DB_PASSWORD:-secret}
+    networks:
+      - webusb-network
+    depends_on:
+      - db
+
 networks:
   webusb-network:
     driver: bridge

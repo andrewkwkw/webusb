@@ -8,8 +8,9 @@ use App\Models\Archive;
 
 class ArchiveDistributionChartWidget extends ChartWidget
 {
-    protected static ?int $sort = 3;
-    protected ?string $heading = 'Distribusi Kategori Arsip';
+    protected static ?int $sort = 4;
+    protected ?string $heading = 'Distribusi Arsip per Kategori';
+    protected ?string $pollingInterval = '3s';
 
     protected function getData(): array
     {

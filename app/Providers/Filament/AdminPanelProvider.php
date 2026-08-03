@@ -32,10 +32,19 @@ class AdminPanelProvider extends PanelProvider
             ->font('Manrope')
             ->colors([
                 'primary' => Color::hex('#002576'),
+                'danger' => Color::Rose,
+                'info' => Color::Sky,
+                'success' => Color::Emerald,
+                'warning' => Color::Amber,
             ])
             ->brandLogo(asset('assets/logo.webp'))
             ->brandLogoHeight('3rem')
             ->favicon(asset('assets/logo.webp'))
+            ->sidebarCollapsibleOnDesktop()
+            ->spa()
+            ->databaseNotifications()
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->breadcrumbs()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

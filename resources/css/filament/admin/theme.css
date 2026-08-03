@@ -2,3 +2,175 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+@source '../../../../resources/views/vendor/filament-panels/**/*';
+
+/* ============================================
+   KUSTOMISASI HALAMAN LOGIN
+   ============================================ */
+html:has(.fi-simple-layout), body:has(.fi-simple-layout) {
+    overflow: hidden !important;
+    height: 100vh !important;
+    margin: 0; padding: 0;
+}
+
+.fi-simple-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    background-image: url('/assets/login-bg.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden !important;
+}
+
+/* Dark overlay over the background image (NOT BLURRED) */
+.fi-simple-layout::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0, 37, 118, 0.25); /* Lighter UKM Blue overlay, clear image */
+    z-index: 0;
+}
+
+.fi-simple-layout-header {
+    position: relative;
+    z-index: 10;
+}
+
+.fi-simple-main-ctn {
+    position: relative;
+    z-index: 10;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1;
+    padding: 1rem !important; /* Reduced padding to fit screen */
+    overflow: hidden;
+}
+
+/* Glassmorphism Effect for the Login Card */
+.fi-simple-main {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3) !important;
+    padding: 2rem !important;
+    transition: all 0.3s ease;
+}
+
+/* Dark Mode Glassmorphism */
+.dark .fi-simple-main {
+    background: rgba(17, 24, 39, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+.custom-footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* --- Dashboard: Stat Cards Hover Effect --- */
+.fi-wi-stats-overview-stat {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px !important;
+}
+.fi-wi-stats-overview-stat:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 37, 118, 0.1), 0 8px 10px -6px rgba(0, 37, 118, 0.1);
+}
+
+/* --- Dashboard: Chart Cards --- */
+.fi-wi-chart {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px !important;
+}
+.fi-wi-chart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 37, 118, 0.08);
+}
+
+/* --- Sidebar: Smooth Transitions --- */
+.fi-sidebar-nav-link {
+    transition: all 0.2s ease;
+    border-radius: 8px !important;
+    margin: 2px 8px;
+}
+.fi-sidebar-nav-link:hover {
+    transform: translateX(4px);
+    background-color: rgba(0, 37, 118, 0.05);
+}
+
+/* --- Table Rows: Hover Highlight --- */
+.fi-table-row {
+    transition: all 0.15s ease;
+}
+.fi-table-row:hover {
+    background-color: rgba(0, 37, 118, 0.03) !important;
+}
+
+/* --- Buttons: Modern Hover --- */
+.fi-btn {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.fi-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 37, 118, 0.1);
+}
+
+/* --- Cards: General Polish --- */
+.fi-section {
+    transition: all 0.2s ease;
+    border-radius: 12px !important;
+}
+
+/* --- Recent Activity Table Widget --- */
+.fi-ta {
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+/* --- Header TopBar Polish --- */
+.fi-topbar {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- Notifications / Toasts --- */
+.fi-notification {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Smooth Page Transitions --- */
+.fi-body {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}

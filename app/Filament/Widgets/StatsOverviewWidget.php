@@ -16,6 +16,7 @@ use App\Models\OprecRegistration;
 class StatsOverviewWidget extends BaseStatsOverviewWidget
 {
     protected static ?int $sort = 2;
+    protected ?string $pollingInterval = '3s';
 
     protected function getStats(): array
     {

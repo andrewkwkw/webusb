@@ -8,7 +8,8 @@ use App\Models\Artwork;
 
 class ArtworkDistributionChartWidget extends ChartWidget
 {
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 3;
+    protected ?string $pollingInterval = '3s';
     protected ?string $heading = 'Distribusi Kategori Karya';
 
     protected function getData(): array
