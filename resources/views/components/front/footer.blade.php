@@ -13,17 +13,17 @@
             </p>
 
             <div class="flex flex-col space-y-3">
-                @if($contact && $contact->instagram)
+                @if($contact && isset($contact->instagram))
                     <a href="{{ $contact->instagram }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
                         <span class="material-symbols-outlined mr-2">camera</span> Instagram
                     </a>
                 @endif
-                @if($contact && $contact->youtube)
+                @if($contact && isset($contact->youtube))
                     <a href="{{ $contact->youtube }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
                         <span class="material-symbols-outlined mr-2">play_circle</span> YouTube
                     </a>
                 @endif
-                @if($contact && $contact->tiktok)
+                @if($contact && isset($contact->tiktok))
                     <a href="{{ $contact->tiktok }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
                         <span class="material-symbols-outlined mr-2">language</span> TikTok
                     </a>
