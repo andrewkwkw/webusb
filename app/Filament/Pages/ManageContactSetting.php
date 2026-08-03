@@ -20,9 +20,9 @@ class ManageContactSetting extends Page implements HasForms
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-phone';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Pengaturan';
+    protected static string|UnitEnum|null $navigationGroup = 'Pengaturan Website';
 
-    protected static ?string $navigationLabel = 'Kontak & Sosmed';
+    protected static ?string $navigationLabel = 'Pengaturan Kontak';
 
     protected static ?string $title = 'Pengaturan Kontak';
 
@@ -78,6 +78,8 @@ class ManageContactSetting extends Page implements HasForms
         } else {
             ContactSetting::create($data);
         }
+
+        \Illuminate\Support\Facades\Cache::forget('contact_setting');
 
         Notification::make()
             ->success()

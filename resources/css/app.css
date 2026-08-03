@@ -17,17 +17,17 @@
     --color-on-surface-variant: #444653;
     --color-on-background: #1b1b1c;
     --color-primary-fixed: #dce1ff;
-    --color-gold: #D4AF37; /* usb-gold custom */
+    --color-gold: #1E3A8A; /* Navy Blue (Biru Dongker) accent */
 
     /* Custom Fonts */
     --font-headline-md: 'Libre Caslon Text', serif;
     --font-display-lg: 'Libre Caslon Text', serif;
     --font-headline-lg: 'Libre Caslon Text', serif;
     --font-headline-lg-mobile: 'Libre Caslon Text', serif;
-    --font-label-lg: 'Manrope', sans-serif;
-    --font-body-lg: 'Manrope', sans-serif;
-    --font-label-sm: 'Manrope', sans-serif;
-    --font-body-md: 'Manrope', sans-serif;
+    --font-label-lg: 'Libre Caslon Text', serif;
+    --font-body-lg: 'Libre Caslon Text', serif;
+    --font-label-sm: 'Libre Caslon Text', serif;
+    --font-body-md: 'Libre Caslon Text', serif;
 
     /* Custom Spacing */
     --spacing-gutter: 24px;

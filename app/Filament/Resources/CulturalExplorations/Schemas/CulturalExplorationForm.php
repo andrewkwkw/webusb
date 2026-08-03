@@ -18,31 +18,29 @@ class CulturalExplorationForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                RichEditor::make('content')
-                    ->required()
-                    ->columnSpanFull(),
-                FileUpload::make('image_path')
-                    ->image(),
-                Select::make('category')
-                    ->options([
-            'Tradisi' => 'Tradisi',
-            'Komunitas' => 'Komunitas',
-            'Catatan Perjalanan' => 'Catatan perjalanan',
-            'Liputan Budaya' => 'Liputan budaya',
-        ])
-                    ->required(),
-                TextInput::make('location'),
-                TagsInput::make('tags'),
-                Hidden::make('user_id')
-                    ->default(fn () => auth()->id()),
-                Toggle::make('is_published')
-                    ->label('Terbitkan ke Publik (Publish)')
-                    ->hidden(fn () => auth()->user()->role === 'author')
-                    ->default(false),
-            ]);
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 2])->schema([
+                        \Filament\Schemas\Components\Section::make('Konten Telusur Budaya')->schema([
+                            TextInput::make('title')->label('Judul')->required(),
+                            TextInput::make('slug')->label('Slug (URL)')->required(),
+                            RichEditor::make('content')->label('Isi Konten')->required()->columnSpanFull(),
+                        ]),
+                    ]),
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 1])->schema([
+                        \Filament\Schemas\Components\Section::make('Pengaturan & Media')->schema([
+                            Select::make('category')->label('Kategori')->options([
+                                'Tradisi' => 'Tradisi',
+                                'Komunitas' => 'Komunitas',
+                                'Catatan Perjalanan' => 'Catatan perjalanan',
+                                'Liputan Budaya' => 'Liputan budaya',
+                            ])->required(),
+                            TextInput::make('location')->label('Lokasi'),
+                            TagsInput::make('tags')->label('Tag'),
+                            FileUpload::make('image_path')->image()->label('Thumbnail'),
+                            Toggle::make('is_published')->label('Terbitkan')->inline(false)->hidden(fn () => auth()->user()->role === 'author')->default(false),
+                            Hidden::make('user_id')->default(fn () => auth()->id()),
+                        ]),
+                    ]),
+            ])
+            ->columns(['default' => 1, 'md' => 3]);
     }
 }

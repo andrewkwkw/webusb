@@ -17,10 +17,15 @@ class ArtworksTable
         return $table
             ->columns([
                 ImageColumn::make('images')
-                    ->stacked(),
-                IconColumn::make('is_published')
-                    ->label('Status Publikasi')
-                    ->boolean(),
+                    ->label('Gambar')
+                    ->stacked()
+                    ->circular()
+                    ->limit(3),
+                TextColumn::make('is_published')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn (bool $state): string => $state ? 'success' : 'gray')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Aktif' : 'Draft'),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('slug')
@@ -51,9 +56,7 @@ class ArtworksTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

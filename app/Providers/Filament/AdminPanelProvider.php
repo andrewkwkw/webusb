@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
+            ->font('Manrope')
             ->colors([
                 'primary' => Color::hex('#002576'),
             ])

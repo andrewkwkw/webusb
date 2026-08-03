@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('content');
             $table->string('image_path')->nullable();
-            $table->enum('category', ['Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran']);
+            $table->enum('category', ['Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran', 'Seni Musik', 'Seni Rupa', 'Seni Teater']);
             $table->date('event_date')->nullable();
             $table->boolean('is_highlight')->default(false);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

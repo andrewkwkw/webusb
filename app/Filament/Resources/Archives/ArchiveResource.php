@@ -19,8 +19,10 @@ class ArchiveResource extends Resource
 {
     protected static ?string $model = Archive::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    
+    protected static string|\UnitEnum|null $navigationGroup = 'Media & Publikasi';
+    protected static ?string $modelLabel = 'Arsip Kegiatan';
+    protected static ?string $pluralModelLabel = 'Daftar Arsip Kegiatan';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-archive-box';
 
     protected static ?string $recordTitleAttribute = 'title';
 

@@ -19,8 +19,10 @@ class ArtNewsResource extends Resource
 {
     protected static ?string $model = ArtNews::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-calendar-days';
-    
+    protected static string|\UnitEnum|null $navigationGroup = 'Media & Publikasi';
+    protected static ?string $modelLabel = 'Berita Seni';
+    protected static ?string $pluralModelLabel = 'Daftar Berita Seni';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?string $recordTitleAttribute = 'title';
 

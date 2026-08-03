@@ -18,8 +18,10 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    
+    protected static string|\UnitEnum|null $navigationGroup = 'Keamanan';
+    protected static ?string $modelLabel = 'Pengguna';
+    protected static ?string $pluralModelLabel = 'Daftar Pengguna';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-shield-check';
 
     protected static ?string $recordTitleAttribute = 'name';
 

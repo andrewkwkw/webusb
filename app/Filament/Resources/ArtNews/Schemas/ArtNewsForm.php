@@ -18,34 +18,33 @@ class ArtNewsForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                RichEditor::make('content')
-                    ->required()
-                    ->columnSpanFull(),
-                FileUpload::make('image_path')
-                    ->image(),
-                Select::make('category')
-                    ->options([
-            'Berita Kampus' => 'Berita kampus',
-            'Berita Seni' => 'Berita seni',
-            'Agenda' => 'Agenda',
-            'Festival' => 'Festival',
-            'Pameran' => 'Pameran',
-        ])
-                    ->required(),
-                DatePicker::make('event_date'),
-                Toggle::make('is_highlight')
-                    ->label('Jadikan Sorotan Utama (Highlight)')
-                    ->hidden(fn () => auth()->user()->role === 'author'),
-                Hidden::make('user_id')
-                    ->default(fn () => auth()->id()),
-                Toggle::make('is_published')
-                    ->label('Terbitkan ke Publik (Publish)')
-                    ->hidden(fn () => auth()->user()->role === 'author')
-                    ->default(false),
-            ]);
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 2])->schema([
+                        \Filament\Schemas\Components\Section::make('Konten Berita')->schema([
+                            TextInput::make('title')->label('Judul')->required(),
+                            TextInput::make('slug')->label('Slug (URL)')->required(),
+                            RichEditor::make('content')->label('Isi Berita')->required()->columnSpanFull(),
+                        ]),
+                    ]),
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 1])->schema([
+                        \Filament\Schemas\Components\Section::make('Pengaturan & Media')->schema([
+                            Select::make('category')->label('Kategori')->options([
+                                'Berita Kampus' => 'Berita Kampus',
+                                'Berita Seni' => 'Berita Seni',
+                                'Agenda' => 'Agenda',
+                                'Festival' => 'Festival',
+                                'Pameran' => 'Pameran',
+                                'Seni Musik' => 'Seni Musik',
+                                'Seni Rupa' => 'Seni Rupa',
+                                'Seni Teater' => 'Seni Teater',
+                            ])->required(),
+                            FileUpload::make('image_path')->image()->label('Thumbnail'),
+                            DatePicker::make('event_date')->label('Tanggal Event'),
+                            Toggle::make('is_highlight')->label('Sorotan Utama')->inline(false)->hidden(fn () => auth()->user()->role === 'author'),
+                            Toggle::make('is_published')->label('Terbitkan')->inline(false)->hidden(fn () => auth()->user()->role === 'author')->default(false),
+                            Hidden::make('user_id')->default(fn () => auth()->id()),
+                        ]),
+                    ]),
+            ])
+            ->columns(['default' => 1, 'md' => 3]);
     }
 }

@@ -19,8 +19,10 @@ class ArtworkResource extends Resource
 {
     protected static ?string $model = Artwork::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Media & Publikasi';
+    protected static ?string $modelLabel = 'Karya Seni';
+    protected static ?string $pluralModelLabel = 'Daftar Karya Seni';
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
-    
 
     protected static ?string $recordTitleAttribute = 'title';
 

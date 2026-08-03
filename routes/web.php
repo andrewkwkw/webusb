@@ -21,4 +21,7 @@ Route::get('/proyek', [FrontEndController::class, 'projects'])->name('projects.i
 Route::get('/arsip', [FrontEndController::class, 'archives'])->name('archives.index');
 
 Route::get('/kontak', [FrontEndController::class, 'contact'])->name('contact');
-Route::post('/kontak', [FrontEndController::class, 'sendMessage'])->name('contact.send');
+Route::post('/kontak', [FrontEndController::class, 'sendMessage'])->name('contact.send')->middleware('throttle:5,1');
+
+Route::get('/oprec', [FrontEndController::class, 'oprec'])->name('oprec.index');
+Route::post('/oprec', [FrontEndController::class, 'storeOprec'])->name('oprec.store')->middleware('throttle:5,1');

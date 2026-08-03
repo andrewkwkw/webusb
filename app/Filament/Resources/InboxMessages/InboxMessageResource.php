@@ -26,7 +26,7 @@ class InboxMessageResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
     
 
-    protected static string|UnitEnum|null $navigationGroup = 'Kontak';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pendaftaran & Interaksi';
     protected static ?string $navigationLabel = 'Pesan Masuk';
     protected static ?string $pluralModelLabel = 'Pesan Masuk';
     protected static ?string $modelLabel = 'Pesan';
@@ -77,9 +77,7 @@ class InboxMessageResource extends Resource
                 DeleteAction::make()->visible(fn () => auth()->user()->role === 'admin'),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make()->visible(fn () => auth()->user()->role === 'admin'),
-                ]),
+                //
             ]);
     }
 

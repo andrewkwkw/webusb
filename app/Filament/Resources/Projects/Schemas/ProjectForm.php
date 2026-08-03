@@ -17,32 +17,30 @@ class ProjectForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                RichEditor::make('description')
-                    ->columnSpanFull(),
-                RichEditor::make('content')
-                    ->required()
-                    ->columnSpanFull(),
-                Select::make('category')
-                    ->options([
-            'Company Profile' => 'Company profile',
-            'Dokumenter Budaya' => 'Dokumenter budaya',
-            'Kolaborasi' => 'Kolaborasi',
-            'Program Tahunan' => 'Program tahunan',
-            'Pameran' => 'Pameran',
-        ])
-                    ->required(),
-                TextInput::make('video_embed_url')
-                    ->url(),
-                FileUpload::make('cover_image_path')
-                    ->image(),
-                Hidden::make('user_id')
-                    ->default(fn () => auth()->id()),
-                Toggle::make('is_published')
-                    ->required(),
-            ]);
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 2])->schema([
+                        \Filament\Schemas\Components\Section::make('Informasi Project')->schema([
+                            TextInput::make('title')->label('Judul')->required(),
+                            TextInput::make('slug')->label('Slug (URL)')->required(),
+                            RichEditor::make('description')->columnSpanFull()->label('Deskripsi Singkat'),
+                            RichEditor::make('content')->required()->columnSpanFull()->label('Konten Detail'),
+                        ]),
+                    ]),
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 1])->schema([
+                        \Filament\Schemas\Components\Section::make('Kategori & Media')->schema([
+                            Select::make('category')->label('Kategori')->options([
+                                'Company Profile' => 'Company profile',
+                                'Dokumenter Budaya' => 'Dokumenter budaya',
+                                'Kolaborasi' => 'Kolaborasi',
+                                'Program Tahunan' => 'Program tahunan',
+                                'Pameran' => 'Pameran',
+                            ])->required(),
+                            TextInput::make('video_embed_url')->url()->label('URL Video Embed (Opsional)'),
+                            FileUpload::make('cover_image_path')->image()->label('Gambar Cover'),
+                            Toggle::make('is_published')->label('Terbitkan')->inline(false)->default(false),
+                            Hidden::make('user_id')->default(fn () => auth()->id()),
+                        ]),
+                    ]),
+            ])
+            ->columns(['default' => 1, 'md' => 3]);
     }
 }

@@ -27,4 +27,9 @@ class ArtNews extends Model
         return LogOptions::defaults()
             ->logFillable();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

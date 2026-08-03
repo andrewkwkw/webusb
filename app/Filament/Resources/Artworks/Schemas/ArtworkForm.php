@@ -17,40 +17,31 @@ class ArtworkForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                RichEditor::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                Select::make('category')
-                    ->options([
-            'Fotografi' => 'Fotografi',
-            'Videografi' => 'Videografi',
-            'Photo Story' => 'Photo story',
-            'Dokumenter Visual' => 'Dokumenter visual',
-        ])
-                    ->required(),
-                FileUpload::make('images')
-                    ->multiple()
-                    ->image()
-                    ->directory('artworks')
-                    ->reorderable()
-                    ->columnSpanFull(),
-                TextInput::make('video_url')
-                    ->url(),
-                TextInput::make('publication_year'),
-                TextInput::make('creator_name'),
-                Toggle::make('is_featured')
-                    ->label('Jadikan Sorotan Utama (Featured)')
-                    ->hidden(fn () => auth()->user()->role === 'author'),
-                Toggle::make('is_published')
-                    ->label('Terbitkan ke Publik (Publish)')
-                    ->hidden(fn () => auth()->user()->role === 'author')
-                    ->default(false),
-                Hidden::make('user_id')
-                    ->default(fn () => auth()->id()),
-            ]);
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 2])->schema([
+                        \Filament\Schemas\Components\Section::make('Informasi Karya')->schema([
+                            TextInput::make('title')->label('Judul')->required(),
+                            TextInput::make('slug')->label('Slug (URL)')->required(),
+                            RichEditor::make('description')->label('Deskripsi Karya')->required()->columnSpanFull(),
+                            FileUpload::make('images')->label('Gambar/Foto Karya')->multiple()->image()->directory('artworks')->reorderable()->columnSpanFull(),
+                        ]),
+                    ]),
+                    \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 1])->schema([
+                        \Filament\Schemas\Components\Section::make('Kategori & Pengaturan')->schema([
+                            Select::make('category')->label('Kategori')->options([
+                                'Fotografi' => 'Fotografi',
+                                'Videografi' => 'Videografi',
+                                'Photo Story' => 'Photo Story',
+                                'Dokumenter Visual' => 'Dokumenter Visual',
+                            ])->required(),
+                            TextInput::make('creator_name')->label('Nama Kreator'),
+                            TextInput::make('publication_year')->label('Tahun Publikasi'),
+                            TextInput::make('video_url')->url()->label('URL Video (Opsional)'),
+                            Toggle::make('is_featured')->label('Sorotan Utama')->inline(false)->hidden(fn () => auth()->user()->role === 'author'),
+                            Toggle::make('is_published')->label('Terbitkan')->inline(false)->hidden(fn () => auth()->user()->role === 'author')->default(false),
+                            Hidden::make('user_id')->default(fn () => auth()->id()),
+                        ]),
+                    ]),
+            ])
+            ->columns(['default' => 1, 'md' => 3]);
     }
 }

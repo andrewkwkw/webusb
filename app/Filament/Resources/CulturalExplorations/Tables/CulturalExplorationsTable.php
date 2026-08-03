@@ -20,14 +20,19 @@ class CulturalExplorationsTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                ImageColumn::make('image_path'),
+                ImageColumn::make('image_path')
+                    ->label('Thumbnail')
+                    ->circular()
+                    ->disk('public'),
                 TextColumn::make('category')
                     ->badge(),
                 TextColumn::make('location')
                     ->searchable(),
-                IconColumn::make('is_published')
-                    ->label('Status Publikasi')
-                    ->boolean(),
+                TextColumn::make('is_published')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn (bool $state): string => $state ? 'success' : 'gray')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Aktif' : 'Draft'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -44,9 +49,7 @@ class CulturalExplorationsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

@@ -1,0 +1,20 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to VM
+    runs-on: self-hosted
+
+    steps:
+      - name: Execute Deployment Commands
+        run: |
+          cd /home/andri/webusb
+          git pull origin main
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
+          php artisan optimize:clear

@@ -21,11 +21,11 @@ class ManageCompanyProfile extends Page implements HasForms
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Pengaturan';
+    protected static string|UnitEnum|null $navigationGroup = 'Pengaturan Website';
 
-    protected static ?string $navigationLabel = 'Tentang USB';
+    protected static ?string $navigationLabel = 'Profil Organisasi';
 
-    protected static ?string $title = 'Pengaturan Tentang USB';
+    protected static ?string $title = 'Pengaturan Profil Organisasi';
 
     protected string $view = 'filament.pages.manage-company-profile';
 
@@ -83,6 +83,8 @@ class ManageCompanyProfile extends Page implements HasForms
         } else {
             CompanyProfile::create($data);
         }
+
+        \Illuminate\Support\Facades\Cache::forget('company_profile');
 
         Notification::make()
             ->success()

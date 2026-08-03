@@ -1,29 +1,32 @@
-@php
-    $contact = \App\Models\ContactSetting::first();
-    $profile = \App\Models\CompanyProfile::first();
-@endphp
+
 <footer class="bg-primary w-full py-20 text-on-primary">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-max-width mx-auto px-margin-desktop text-left">
         <div class="col-span-1 md:col-span-2 space-y-8">
-            <div class="h-20 w-auto mb-8 flex items-center">
-                <img src="{{ asset('assets/logo.webp') }}" alt="UKM Seni Budaya Logo" class="h-full w-auto object-contain">
-                <div class="ml-4 flex flex-col justify-center font-headline-md text-gold uppercase tracking-wider leading-tight">
-                    <span class="text-sm">UKM SENI</span>
-                    <span class="text-sm">& BUDAYA</span>
+            <div class="h-16 w-auto mb-8 flex items-center">
+                <img src="{{ asset('assets/logo.webp') }}" alt="UKM Seni Budaya Logo" class="h-16 w-auto object-contain">
+                <div class="ml-4 flex items-center font-headline-md text-gold uppercase tracking-wider">
+                    <span class="text-base sm:text-lg whitespace-nowrap font-bold">UKM SENI BUDAYA</span>
                 </div>
             </div>
             <p class="font-body-md text-on-primary-container max-w-md">
                 Universitas Pakuan. Merawat Jejak, Menciptakan Karya. Wadah bagi mahasiswa untuk mengeksplorasi, melestarikan, dan menciptakan identitas budaya yang dinamis.
             </p>
-            <div class="flex space-x-6">
-                @if($contact && $contact->instagram_url)
-                    <a href="{{ $contact->instagram_url }}" target="_blank" class="hover:text-gold transition-colors"><span class="material-symbols-outlined">camera</span></a>
+
+            <div class="flex flex-col space-y-3">
+                @if($contact && $contact->instagram)
+                    <a href="{{ $contact->instagram }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
+                        <span class="material-symbols-outlined mr-2">camera</span> Instagram
+                    </a>
                 @endif
-                @if($contact && $contact->youtube_url)
-                    <a href="{{ $contact->youtube_url }}" target="_blank" class="hover:text-gold transition-colors"><span class="material-symbols-outlined">play_circle</span></a>
+                @if($contact && $contact->youtube)
+                    <a href="{{ $contact->youtube }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
+                        <span class="material-symbols-outlined mr-2">play_circle</span> YouTube
+                    </a>
                 @endif
-                @if($contact && $contact->tiktok_url)
-                    <a href="{{ $contact->tiktok_url }}" target="_blank" class="hover:text-gold transition-colors"><span class="material-symbols-outlined">language</span></a>
+                @if($contact && $contact->tiktok)
+                    <a href="{{ $contact->tiktok }}" target="_blank" class="flex items-center hover:text-gold transition-colors">
+                        <span class="material-symbols-outlined mr-2">language</span> TikTok
+                    </a>
                 @endif
             </div>
         </div>

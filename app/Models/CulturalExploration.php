@@ -26,4 +26,9 @@ class CulturalExploration extends Model
         'tags' => 'array',
         'is_published' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

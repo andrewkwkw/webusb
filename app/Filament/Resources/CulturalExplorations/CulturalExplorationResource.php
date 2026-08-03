@@ -19,8 +19,10 @@ class CulturalExplorationResource extends Resource
 {
     protected static ?string $model = CulturalExploration::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Media & Publikasi';
+    protected static ?string $modelLabel = 'Telusur Budaya';
+    protected static ?string $pluralModelLabel = 'Daftar Telusur Budaya';
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-asia-australia';
-    
 
     protected static ?string $recordTitleAttribute = 'title';
 

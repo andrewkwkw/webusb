@@ -21,8 +21,10 @@ use Filament\Tables\Table;
 class PageHeroResource extends Resource
 {
     protected static ?string $model = PageHero::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\UnitEnum|null $navigationGroup = 'Pengaturan Website';
+    protected static ?string $modelLabel = 'Banner Halaman';
+    protected static ?string $pluralModelLabel = 'Banner Halaman';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
 
     protected static ?string $recordTitleAttribute = 'page_name';
 

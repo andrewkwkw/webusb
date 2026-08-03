@@ -15,10 +15,10 @@ class FrontEndController extends Controller
 {
     public function home()
     {
-        $artworks = Artwork::where('is_featured', true)->latest()->take(6)->get();
+        $artworks = Artwork::with('user')->where('is_featured', true)->latest()->take(6)->get();
         
-        $cultures = CulturalExploration::where('is_published', true)->latest()->take(2)->get();
-        $news = ArtNews::where('is_published', true)->latest()->take(1)->get();
+        $cultures = CulturalExploration::with('user')->where('is_published', true)->latest()->take(2)->get();
+        $news = ArtNews::with('user')->where('is_published', true)->latest()->take(1)->get();
         
         // Merge latest culture and news for the homepage
         $articles = $cultures->merge($news)->sortByDesc('created_at');
@@ -29,54 +29,83 @@ class FrontEndController extends Controller
     public function about()
     {
         $profile = CompanyProfile::first();
-        return view('pages.about', compact('profile'));
+        $members = \App\Models\OrganizationMember::orderBy('order_column')->get();
+        return view('pages.about', compact('profile', 'members'));
+    }
+
+    public function oprec()
+    {
+        $setting = \App\Models\OprecSetting::first();
+        return view('pages.oprec', compact('setting'));
+    }
+
+    public function storeOprec(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'division' => 'required|string|max:255',
+            'motivation' => 'nullable|string',
+            'portfolio_link' => 'nullable|url',
+        ]);
+
+        \App\Models\OprecRegistration::create($validated);
+
+        return redirect()->back()->with('success', 'Pendaftaran berhasil! Silakan tunggu info selanjutnya.');
     }
 
     public function artworks()
     {
-        $artworks = Artwork::latest()->paginate(12);
+        $artworks = Artwork::with('user')->latest()->paginate(12);
         return view('pages.artworks.index', compact('artworks'));
     }
     
     public function showArtwork($slug)
     {
-        $artwork = Artwork::where('slug', $slug)->firstOrFail();
+        $artwork = Artwork::with('user')->where('slug', $slug)->firstOrFail();
         return view('pages.artworks.show', compact('artwork'));
     }
 
     public function cultures()
     {
-        $cultures = CulturalExploration::where('is_published', true)->latest()->paginate(9);
+        $cultures = CulturalExploration::with('user')->where('is_published', true)->latest()->paginate(9);
         return view('pages.cultures.index', compact('cultures'));
     }
     
     public function showCulture($slug)
     {
-        $culture = CulturalExploration::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        $culture = CulturalExploration::with('user')->where('slug', $slug)->where('is_published', true)->firstOrFail();
         return view('pages.cultures.show', compact('culture'));
     }
 
-    public function arts()
+    public function arts(\Illuminate\Http\Request $request)
     {
-        $news = ArtNews::where('is_published', true)->latest()->paginate(9);
+        $query = ArtNews::with('user')->where('is_published', true)->latest();
+        
+        if ($request->has('category')) {
+            $query->where('category', $request->category);
+        }
+        
+        $news = $query->paginate(9);
         return view('pages.arts.index', compact('news'));
     }
 
     public function showArt($slug)
     {
-        $art = ArtNews::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        $art = ArtNews::with('user')->where('slug', $slug)->where('is_published', true)->firstOrFail();
         return view('pages.arts.show', compact('art'));
     }
 
     public function projects()
     {
-        $projects = Project::where('is_published', true)->latest()->paginate(9);
+        $projects = Project::with('user')->where('is_published', true)->latest()->paginate(9);
         return view('pages.projects.index', compact('projects'));
     }
 
     public function archives()
     {
-        $archives = Archive::latest()->paginate(15);
+        $archives = Archive::with('user')->latest()->paginate(15);
         return view('pages.archives.index', compact('archives'));
     }
 

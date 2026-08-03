@@ -19,8 +19,10 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    
+    protected static string|\UnitEnum|null $navigationGroup = 'Media & Publikasi';
+    protected static ?string $modelLabel = 'Project';
+    protected static ?string $pluralModelLabel = 'Daftar Project';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $recordTitleAttribute = 'title';
 
