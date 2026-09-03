@@ -2,7 +2,8 @@
     <x-front.page-header 
         title="Galeri Karya" 
         pageName="Karya"
-        subtitle="Eksplorasi mahakarya mahasiswa dalam bentuk Fotografi, Videografi, dan Dokumenter Visual."
+        subtitle="Koleksi karya seni terbaik dari anggota dan alumni UKM Seni Budaya Universitas Pakuan."
+        :hero="$hero ?? null"
     />
 
     <section class="py-24 bg-surface-container-low">

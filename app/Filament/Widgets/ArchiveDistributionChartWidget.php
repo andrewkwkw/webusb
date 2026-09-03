@@ -10,7 +10,7 @@ class ArchiveDistributionChartWidget extends ChartWidget
 {
     protected static ?int $sort = 4;
     protected ?string $heading = 'Distribusi Arsip per Kategori';
-    protected ?string $pollingInterval = '3s';
+    protected ?string $pollingInterval = '60s';
 
     protected function getData(): array
     {

@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganizationMember extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'position',
+        'department',
+        'image_path',
+        'order_column',
+    ];
 }

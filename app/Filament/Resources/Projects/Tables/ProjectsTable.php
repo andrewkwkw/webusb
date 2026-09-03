@@ -24,8 +24,12 @@ class ProjectsTable
                     ->badge(),
                 TextColumn::make('video_embed_url')
                     ->searchable(),
-                ImageColumn::make('cover_image_path'),
+                ImageColumn::make('cover_image_path')->label('Cover'),
+                IconColumn::make('is_coming_soon')
+                    ->label('Coming Soon')
+                    ->boolean(),
                 IconColumn::make('is_published')
+                    ->label('Terbit')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()

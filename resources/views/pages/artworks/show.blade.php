@@ -14,6 +14,16 @@
                 <span>{{ $artwork->publication_year }}</span>
             </div>
 
+            @if(!empty($artwork->images) && is_array($artwork->images) && count($artwork->images) > 0)
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    @foreach($artwork->images as $img)
+                        <div class="overflow-hidden rounded-2xl border border-surface-variant/30 shadow-sm">
+                            <img src="{{ Storage::url($img) }}" alt="{{ $artwork->title }}" class="w-full h-auto object-cover rounded-2xl">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
             <div class="prose prose-lg max-w-none font-body-md text-on-surface-variant mb-12">
                 {!! $artwork->description !!}
             </div>

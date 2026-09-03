@@ -9,7 +9,6 @@
         <div class="max-w-max-width mx-auto px-margin-desktop">
             @if(isset($setting) && $setting->is_active)
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <!-- Brosur/Poster -->
                     <div class="bg-white p-4 shadow-[0_20px_40px_rgba(0,56,168,0.05)] rounded-2xl">
                         @if($setting->brochure_image)
                             <img src="{{ Storage::url($setting->brochure_image) }}" alt="Poster Oprec" class="w-full h-auto rounded-xl border border-gray-200">
@@ -23,7 +22,6 @@
                         @endif
                     </div>
 
-                    <!-- Form -->
                     <div class="bg-white p-8 md:p-12 shadow-[0_20px_40px_rgba(0,56,168,0.05)] rounded-2xl border border-primary/5">
                         <h3 class="font-headline-lg text-primary text-3xl mb-2">Formulir Pendaftaran</h3>
                         <p class="text-on-surface-variant mb-8 font-body-md">Isi data diri Anda di bawah ini dengan benar dan lengkap.</p>

@@ -3,6 +3,7 @@
         title="Telusur Budaya" 
         pageName="Budaya"
         subtitle="Merekam jejak tradisi, komunitas, dan liputan budaya Nusantara."
+        :hero="$hero ?? null"
     />
 
     <section class="py-24 bg-white">

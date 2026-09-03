@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("ALTER TABLE art_news MODIFY COLUMN category ENUM('Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran', 'Seni Musik', 'Seni Rupa', 'Seni Teater') NOT NULL");
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement("ALTER TABLE art_news MODIFY COLUMN category ENUM('Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran', 'Seni Musik', 'Seni Rupa', 'Seni Teater') NOT NULL");
+        }
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("ALTER TABLE art_news MODIFY COLUMN category ENUM('Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran') NOT NULL");
+        if (DB::getDriverName() === 'mysql') {
+            DB::statement("ALTER TABLE art_news MODIFY COLUMN category ENUM('Berita Kampus', 'Berita Seni', 'Agenda', 'Festival', 'Pameran') NOT NULL");
+        }
     }
 };

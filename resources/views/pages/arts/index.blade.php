@@ -3,6 +3,7 @@
         title="Denyut Seni" 
         pageName="Seni"
         subtitle="Berita kampus, agenda seni, festival, dan pergerakan budaya terkini."
+        :hero="$hero ?? null"
     />
 
     <section class="py-24 bg-white">

@@ -14,16 +14,26 @@ jobs:
           cd /home/andri/webusb
           git pull origin main
 
-      - name: Rebuild & Restart Containers
+      - name: Install Dependencies & Build Assets
         run: |
           cd /home/andri/webusb
-          docker compose up -d --build
+          composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+          npm install
+          npm run build
 
-      - name: Install Dependencies & Run Migrations
+      - name: Run Migrations & Setup Storage
         run: |
           cd /home/andri/webusb
-          docker compose exec -T app composer install --no-interaction --prefer-dist --optimize-autoloader
-          docker compose exec -T app npm install
-          docker compose exec -T app npm run build
-          docker compose exec -T app php artisan migrate --force
-          docker compose exec -T app php artisan optimize:clear
+          php artisan migrate --force
+          php artisan storage:link || true
+
+      - name: Optimize & Set Permissions
+        run: |
+          cd /home/andri/webusb
+          php artisan optimize:clear
+          php artisan optimize
+          php artisan filament:optimize
+          
+          # Adjust permissions for web server
+          sudo chown -R www-data:www-data storage bootstrap/cache
+          sudo chmod -R 775 storage bootstrap/cache

@@ -22,7 +22,7 @@ class ArtworkForm
                             TextInput::make('title')->label('Judul')->required(),
                             TextInput::make('slug')->label('Slug (URL)')->required(),
                             RichEditor::make('description')->label('Deskripsi Karya')->required()->columnSpanFull(),
-                            FileUpload::make('images')->label('Gambar/Foto Karya')->multiple()->image()->directory('artworks')->reorderable()->columnSpanFull(),
+                            FileUpload::make('images')->label('Gambar/Foto Karya')->multiple()->image()->maxSize(2048)->maxFiles(10)->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->directory('artworks')->reorderable()->columnSpanFull(),
                         ]),
                     ]),
                     \Filament\Schemas\Components\Group::make()->columnSpan(['default' => 1, 'md' => 1])->schema([

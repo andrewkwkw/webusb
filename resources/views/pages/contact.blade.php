@@ -8,7 +8,6 @@
     <section class="py-24 bg-surface-container-low">
         <div class="max-w-6xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            <!-- Contact Info -->
             <div class="space-y-12">
                 <div>
                     <h2 class="font-headline-lg text-4xl text-primary mb-4">Mari Berbincang</h2>
@@ -57,7 +56,6 @@
                 </div>
             </div>
 
-            <!-- Contact Form (Not Functional for Slicing, But HTML Ready) -->
             <div class="bg-white p-10 rounded-2xl border border-surface-variant/30 shadow-lg">
                 <h3 class="font-headline-md text-2xl text-primary mb-8">Kirim Pesan</h3>
                 
@@ -71,19 +69,23 @@
                     @csrf
                     <div>
                         <label class="block font-label-sm text-on-surface-variant uppercase mb-2" for="name">Nama Lengkap</label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Masukkan nama Anda">
+                        <input type="text" id="name" name="name" required value="{{ old('name') }}" class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors @error('name') border-red-500 @enderror" placeholder="Masukkan nama Anda">
+                        @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block font-label-sm text-on-surface-variant uppercase mb-2" for="email">Alamat Email</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="email@contoh.com">
+                        <input type="email" id="email" name="email" required value="{{ old('email') }}" class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors @error('email') border-red-500 @enderror" placeholder="email@contoh.com">
+                        @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block font-label-sm text-on-surface-variant uppercase mb-2" for="subject">Subjek</label>
-                        <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Perihal pesan">
+                        <input type="text" id="subject" name="subject" required value="{{ old('subject') }}" class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors @error('subject') border-red-500 @enderror" placeholder="Perihal pesan">
+                        @error('subject') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block font-label-sm text-on-surface-variant uppercase mb-2" for="message">Pesan</label>
-                        <textarea id="message" name="message" required rows="5" class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Tulis pesan Anda di sini..."></textarea>
+                        <textarea id="message" name="message" required rows="5" class="w-full px-4 py-3 rounded-lg border border-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors @error('message') border-red-500 @enderror" placeholder="Tulis pesan Anda di sini...">{{ old('message') }}</textarea>
+                        @error('message') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                     <button type="submit" class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-lg uppercase tracking-widest hover:bg-gold hover:text-primary transition-colors duration-300">
                         Kirim Sekarang

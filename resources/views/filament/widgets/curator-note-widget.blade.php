@@ -1,7 +1,6 @@
 <x-filament-widgets::widget>
     <x-filament::section>
         <div class="flex items-start gap-x-4" x-data="{ show: false }" x-init="setTimeout(() => show = true, 200)">
-            {{-- Ikon Animasi --}}
             <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-lg"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-500"

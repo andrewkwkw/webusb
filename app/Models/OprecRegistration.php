@@ -9,5 +9,17 @@ class OprecRegistration extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'division',
+        'motivation',
+        'portfolio_link',
+        // 'status' intentionally excluded — only admin can change via Filament
+    ];
+
+    protected $casts = [
+        'status' => 'string',
+    ];
 }

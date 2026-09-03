@@ -35,6 +35,12 @@ class PageHeroResource extends Resource
                 TextInput::make('page_name')
                     ->required(),
                 FileUpload::make('image_path')
+                    ->label('Gambar Utama (1)')
+                    ->image()
+                    ->disk('public')
+                    ->directory('hero-images'),
+                FileUpload::make('image_path_2')
+                    ->label('Gambar Kedua (2)')
                     ->image()
                     ->disk('public')
                     ->directory('hero-images'),
